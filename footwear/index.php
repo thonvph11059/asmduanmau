@@ -63,7 +63,7 @@ $pro = $stmt->fetchAll(PDO::FETCH_ASSOC);
 					<?php foreach ($pro as $p) : ?>
 						<div class="col-lg-3 mb-4 text-center">
 							<div class="product-entry border">
-								<a href="product-detail.php?id=<?= $p['id'] ?>" class="prod-img">
+								<a href="info.php?id=<?= $p['id'] ?>" class="prod-img">
 									<img src="images/item-1.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
 								</a>
 								<div class="desc">

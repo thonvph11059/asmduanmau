@@ -5,8 +5,6 @@ $stmt = $conn->prepare($sql);
 $stmt->execute();
 $cate = $stmt->fetchALL(PDO::FETCH_ASSOC);
 
-
-
 ?>
 
 
@@ -33,6 +31,10 @@ $cate = $stmt->fetchALL(PDO::FETCH_ASSOC);
                         <th>cate_id</th>
                         <th>cate_name</th>
                         <th>cate_description</th>
+                        <th>Action
+                            <br>
+                            <a href="cate_add.php">Them</a>
+                        </th>
 
                     </thead>
                     <tbody>

@@ -35,7 +35,7 @@
 										<?php endforeach ?>
 									</ul>
 								</li>
-								<li><a href="about.html">Giới thiệu</a></li>
+								<li><a href="admin/products.php">Quản trị</a></li>
 								<li><a href="contact.html">Liên hệ</a></li>
 								<li class="cart"><a href="cart.html"><i class="icon-shopping-cart"></i>GIỏ hàng[0]</a>
 								</li>

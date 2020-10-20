@@ -1,5 +1,5 @@
 <?php
-require_once '../dbconnection.php';
+require_once '../public/dbconnection.php';
 $path = "Quản trị sản phẩm";
 $sql = "select * from products";
 $stmt = $conn->prepare($sql);
