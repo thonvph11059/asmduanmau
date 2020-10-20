@@ -35,14 +35,14 @@ $pro = $stmt->fetch(PDO::FETCH_ASSOC);
 							<div class="item">
 								<div class="product-entry border">
 									<a href="#" class="prod-img">
-										<img src="images/item-1.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+										<img src="footwear/<?= $pro['image'] ?>" class="img-fluid" alt="Free html5 bootstrap 4 template">
 									</a>
 								</div>
 							</div>
 							<div class="item">
 								<div class="product-entry border">
 									<a href="#" class="prod-img">
-										<img src="images/item-2.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+										<img src="footwear/<?= $pro['image'] ?>" class="img-fluid" alt="Free html5 bootstrap 4 template">
 									</a>
 								</div>
 							</div>
@@ -55,6 +55,7 @@ $pro = $stmt->fetch(PDO::FETCH_ASSOC);
 								<span><?= $pro['price'] ?></span>
 							</p>
 							<p><?= $pro['sort_desc'] ?></p>
+							<p><?= $pro['detail'] ?></p>
 							<div class="input-group mb-4">
 								<span class="input-group-btn">
 									<button type="button" class="quantity-left-minus btn" data-type="minus" data-field="">
@@ -83,21 +84,12 @@ $pro = $stmt->fetch(PDO::FETCH_ASSOC);
 							<div class="col-md-12 pills">
 								<div class="bd-example bd-example-tabs">
 									<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-
-										<li class="nav-item">
-											<a class="nav-link active" id="pills-description-tab" data-toggle="pill" href="#pills-description" role="tab" aria-controls="pills-description" aria-expanded="true">Description</a>
-										</li>
 										<li class="nav-item">
 											<a class="nav-link" id="pills-review-tab" data-toggle="pill" href="#pills-review" role="tab" aria-controls="pills-review" aria-expanded="true">Review</a>
 										</li>
 									</ul>
 
 									<div class="tab-content" id="pills-tabContent">
-										<div class="tab-pane border fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
-											<p><?= $pro['detail'] ?></p>
-										</div>
-
-
 										<div class="tab-pane border fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
 											<div class="row">
 												<div class="col-md-8">

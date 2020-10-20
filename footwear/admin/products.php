@@ -47,8 +47,8 @@ $pro = $stmt->fetchALL(PDO::FETCH_ASSOC);
                                 <td><?= $p['price'] ?></td>
                                 <td><?= $p['sort_desc'] ?></td>
                                 <td><?= $p['detail'] ?></td>
-                                <td><a href="pro_delete.php?id=<?= $c['cate_id'] ?>">Xóa</a>
-                                    <a href="pro_edit.php?id=<?= $c['cate_id'] ?>">Sửa</a>
+                                <td><a onclick="return confirm('Chắc chắn xóa sản phẩm này?')" href="pro_delete.php?id=<?= $p['id'] ?>">Xóa</a>
+                                    <a href="pro_edit.php?id=<?= $p['id'] ?>">Sửa</a>
                                 </td>
                             </tr>
                         <?php endforeach ?>

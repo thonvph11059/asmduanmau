@@ -64,11 +64,11 @@ $pro = $stmt->fetchAll(PDO::FETCH_ASSOC);
 						<div class="col-lg-3 mb-4 text-center">
 							<div class="product-entry border">
 								<a href="info.php?id=<?= $p['id'] ?>" class="prod-img">
-									<img src="images/item-1.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+									<img src="footwear/<?= $p['image'] ?>" class="img-fluid" alt="Free html5 bootstrap 4 template">
 								</a>
 								<div class="desc">
-									<h2><a href="#"><?php echo $p['name'] ?></a></h2>
-									<span class="price"></span>
+									<h2><a href="#"><?= $p['name'] ?></a></h2>
+									<span class="price"><?= $p['price'] ?></span>
 								</div>
 							</div>
 						</div>
