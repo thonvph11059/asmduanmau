@@ -1,64 +1,61 @@
 <?php
 require_once '../public/dbconnection.php';
-$path = "Quản trị sản phẩm";
-$sql = "select * from products";
+$sql = "SELECT categories.cate_name, products.id, products.name, products.price, products.image, products.sort_desc, products.detail FROM products INNER JOIN categories ON products.cate_id = categories.cate_id";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
-$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$pro = $stmt->fetchALL(PDO::FETCH_ASSOC);
+
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
-<?php include_once './admin/' ?>
+
+<?php require_once './common/head.php' ?>
 
 <body>
-    <div class="container" style="text-align: center;">
-        <?php
-        include_once './admin_asset/header.php';
-
-        ?>
-        <section class="news">
-            <div class="news-body">
-                <table style="width: 100%;" border="1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2> quản trị sản phẩm </h2>
+            </div>
+            <div class="col-md-12">
+                <table class="table">
                     <thead>
-                        <th>Pro_id</th>
-                        <th>Danh mục</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Giá bán</th>
-                        <th>Ảnh</th>
-                        <th>Gía mềm</th>
-                        <th>Mô tả chi tiết</th>
-                        <th>Hành động<br>
-                            <a href="pro_add.php"><button class="btn btn_red" type="submit">Thêm</button></a>
+                        <th>id</th>
+                        <th>Tên danh mục</th>
+                        <th>Tên</th>
+                        <th>Ảnh</th>
+                        <th>Giá</th>
+                        <th>Mô tả ngắn</th>
+                        <th>Chi tiết</th>
+                        <th>Action
+                            <br>
+                            <a href="pro_add.php">Them</a>
                         </th>
+
                     </thead>
                     <tbody>
-                        <?php foreach ($products as $p) : ?>
-
+                        <?php
+                        foreach ($pro as $p) : ?>
                             <tr>
                                 <td><?= $p['id'] ?></td>
-                                <td><?= $p['cate_id'] ?></td>
+                                <td><?= $p['cate_name'] ?></td>
                                 <td><?= $p['name'] ?></td>
+                                <td><img src="<?= $p['image'] ?>" alt="" width="100px"></td>
                                 <td><?= $p['price'] ?></td>
-                                <td><img src=" ../img/<?= $p['image'] ?>" alt="" width="200px">
-                                </td>
-
-                                <td><?= $p['soft_price'] ?></td>
+                                <td><?= $p['sort_desc'] ?></td>
                                 <td><?= $p['detail'] ?></td>
-
-
-                                <td>
-                                    <a onclick="return confirm('Bạn có chắc chắn muốn xóa mục này không?')" href="pro_delete.php?id=<?= $p['pro_id'] ?>"><button class="btn btn_red" type="submit">Xóa</button></a>
-                                    <br>
-                                    <a href="pro_edit.php?id=<?= $p['pro_id'] ?>"><button class="btn btn_red" type="submit">Sửa</button></a>
+                                <td><a href="pro_delete.php?id=<?= $c['cate_id'] ?>">Xóa</a>
+                                    <a href="pro_edit.php?id=<?= $c['cate_id'] ?>">Sửa</a>
                                 </td>
                             </tr>
                         <?php endforeach ?>
-
-
                     </tbody>
                 </table>
             </div>
-        </section>
+        </div>
     </div>
 </body>
 
