@@ -30,12 +30,13 @@ if (isset($_POST['btn'])) {
             </div>
             <div class="col-md-12">
                 <form action="" method="POST">
-                    <p>Name</p>
+                    Name: <br>
                     <input type="text" name="cate_name">
-
-                    <p>Description</p>
+                    <br> <br>
+                    Mô tả: <br>
                     <input type="text" name="cate_description">
-                    <button type="submit" name="btn">Lưu</button>
+                    <br> <br>
+                    <button type="submit" class="btn btn-sm btn-success" name="btn">Lưu</button>
 
                 </form>
             </div>
