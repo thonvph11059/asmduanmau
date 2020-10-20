@@ -12,7 +12,9 @@ $user = $stmt->fetchALL(PDO::FETCH_ASSOC);
 
 <body>
     <div class="container">
+
         <div class="row">
+            <?php include_once './common/nav.php' ?>
             <div class="col-md-12">
                 <h2> quản trị danh mục </h2>
             </div>
