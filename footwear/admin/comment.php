@@ -53,7 +53,7 @@ $count = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <td><a href="../info.php?id=<?= $c['pro_id'] ?>"><?= $c['pro_id'] ?></a> </td>
                                 <td><?= $c['content'] ?> </td>
                                 <td><?= $c['date'] ?> </td>
-                                <td><a onclick="retun confirm('Có chắc chắn xóa comment này')" href="user_delete.php?id=<?= $c['id'] ?>">Xóa</a>
+                                <td><a onclick="return confirm('Có chắc chắn xóa comment này')" href="comment_delete.php?id=<?= $c['id'] ?>">Xóa</a>
                                 </td>
                             </tr>
                         <?php endforeach ?>

@@ -7,6 +7,13 @@ $stmt = $conn->prepare($sql);
 $stmt->execute();
 $pro = $stmt->fetch(PDO::FETCH_ASSOC);
 
+$cate_id = $pro['cate_id'];
+$sql = "select * from products where cate_id = $cate_id limit 4";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$pros = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 $sql = "SELECT users.username, comment.content, comment.date FROM comment INNER JOIN users on comment.user_id = users.user_id WHERE pro_id = $id";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
@@ -86,8 +93,25 @@ if (isset($_POST['btn'])) {
 							</div>
 							<div class="row">
 								<div class="col-sm-12 text-center">
-									<p class="addtocart"><a href="cart.html" class="btn btn-primary btn-addtocart"><i class="icon-shopping-cart"></i> Add to Cart</a></p>
+									<p class="addtocart"><a href="#" class="btn btn-primary btn-addtocart"><i class="icon-shopping-cart"></i> Add to Cart</a></p>
 								</div>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="row row-pb-md">
+								<?php foreach ($pros as $p) : ?>
+									<div class="col-md-6 text-center">
+										<div class="product-entry border">
+											<a href="info.php?id=<?= $p['id'] ?>" class="prod-img">
+												<img src="footwear/<?= $p['image'] ?>" class="img-fluid" alt="Free html5 bootstrap 4 template">
+											</a>
+											<div class="desc">
+												<h2><a href="#"><?= $p['name'] ?></a></h2>
+												<span class="price"><?= $p['price'] ?></span>
+											</div>
+										</div>
+									</div>
+								<?php endforeach ?>
 							</div>
 						</div>
 					</div>
