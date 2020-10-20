@@ -4,11 +4,7 @@ $sql = "SELECT categories.cate_name, products.id, products.name, products.price,
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $pro = $stmt->fetchALL(PDO::FETCH_ASSOC);
-
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 

@@ -1,5 +1,4 @@
 		<?php
-
 		$sql = "select * from categories";
 		$stmt = $conn->prepare($sql);
 		$stmt->execute();
@@ -27,7 +26,7 @@
 							<ul>
 								<li class="active"><a href="index.php">Trang chủ</a></li>
 								<li class="has-dropdown">
-									<a href="men.html">Sản phẩm</a>
+									<a href="#">Sản phẩm</a>
 									<!-- show danh mục -->
 									<ul class="dropdown">
 										<?php foreach ($rl as $c) : ?>
