@@ -11,6 +11,7 @@ $pro = $stmt->fetchALL(PDO::FETCH_ASSOC);
 <?php require_once './common/head.php' ?>
 
 <body>
+    <?php include_once './common/nav.php' ?>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
