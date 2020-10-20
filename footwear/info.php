@@ -1,10 +1,25 @@
 <?php
+session_start();
 require_once './public/dbconnection.php';
 $id = $_GET['id'];
 $sql = "select * from products where id = $id";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $pro = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$sql = "SELECT users.username, comment.content, comment.date FROM comment INNER JOIN users on comment.user_id = users.user_id WHERE pro_id = $id";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$comment = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+if (isset($_POST['btn'])) {
+	extract($_REQUEST);
+	$user_id = $_SESSION['id'];
+	$sql = "insert into comment set content = '$content', user_id = '$user_id', pro_id = '$id'";
+	$stmt = $conn->prepare($sql);
+	$stmt->execute();
+	header('location:info.php?id=' . $id);
+}
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -94,132 +109,42 @@ $pro = $stmt->fetch(PDO::FETCH_ASSOC);
 											<div class="row">
 												<div class="col-md-8">
 													<h3 class="head">23 Reviews</h3>
-													<div class="review">
-														<div class="user-img" style="background-image: url(images/person1.jpg)"></div>
-														<div class="desc">
-															<h4>
-																<span class="text-left">Jacob Webb</span>
-																<span class="text-right">14 March 2018</span>
-															</h4>
-															<p class="star">
-																<span>
-																	<i class="icon-star-full"></i>
-																	<i class="icon-star-full"></i>
-																	<i class="icon-star-full"></i>
-																	<i class="icon-star-half"></i>
-																	<i class="icon-star-empty"></i>
-																</span>
-																<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-															</p>
-															<p>When she reached the first hills of the Italic Mountains,
-																she had a last view back on the skyline of her hometown
-																Bookmarksgrov</p>
+													<?php foreach ($comment as $item) : ?>
+														<div class="review">
+															<div class="user-img" style="background-image: url(images/person1.jpg)"></div>
+															<div class="desc">
+																<h4>
+																	<span class="text-left"><?= $item['username'] ?></span>
+																	<span class="text-right"><?= $item['date'] ?></span>
+																</h4>
+																<p class="star">
+																	<span>
+																		<i class="icon-star-full"></i>
+																		<i class="icon-star-full"></i>
+																		<i class="icon-star-full"></i>
+																		<i class="icon-star-half"></i>
+																		<i class="icon-star-empty"></i>
+																	</span>
+																	<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
+																</p>
+																<p><?= $item['content'] ?></p>
+															</div>
 														</div>
-													</div>
-													<div class="review">
-														<div class="user-img" style="background-image: url(images/person2.jpg)"></div>
-														<div class="desc">
-															<h4>
-																<span class="text-left">Jacob Webb</span>
-																<span class="text-right">14 March 2018</span>
-															</h4>
-															<p class="star">
-																<span>
-																	<i class="icon-star-full"></i>
-																	<i class="icon-star-full"></i>
-																	<i class="icon-star-full"></i>
-																	<i class="icon-star-half"></i>
-																	<i class="icon-star-empty"></i>
-																</span>
-																<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-															</p>
-															<p>When she reached the first hills of the Italic Mountains,
-																she had a last view back on the skyline of her hometown
-																Bookmarksgrov</p>
-														</div>
-													</div>
-													<div class="review">
-														<div class="user-img" style="background-image: url(images/person3.jpg)"></div>
-														<div class="desc">
-															<h4>
-																<span class="text-left">Jacob Webb</span>
-																<span class="text-right">14 March 2018</span>
-															</h4>
-															<p class="star">
-																<span>
-																	<i class="icon-star-full"></i>
-																	<i class="icon-star-full"></i>
-																	<i class="icon-star-full"></i>
-																	<i class="icon-star-half"></i>
-																	<i class="icon-star-empty"></i>
-																</span>
-																<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-															</p>
-															<p>When she reached the first hills of the Italic Mountains,
-																she had a last view back on the skyline of her hometown
-																Bookmarksgrov</p>
-														</div>
-													</div>
+													<?php endforeach ?>
 												</div>
 												<div class="col-md-4">
 													<div class="rating-wrap">
 														<h3 class="head">Give a Review</h3>
 														<div class="wrap">
-															<p class="star">
-																<span>
-																	<i class="icon-star-full"></i>
-																	<i class="icon-star-full"></i>
-																	<i class="icon-star-full"></i>
-																	<i class="icon-star-full"></i>
-																	<i class="icon-star-full"></i>
-																	(98%)
-																</span>
-																<span>20 Reviews</span>
-															</p>
-															<p class="star">
-																<span>
-																	<i class="icon-star-full"></i>
-																	<i class="icon-star-full"></i>
-																	<i class="icon-star-full"></i>
-																	<i class="icon-star-full"></i>
-																	<i class="icon-star-empty"></i>
-																	(85%)
-																</span>
-																<span>10 Reviews</span>
-															</p>
-															<p class="star">
-																<span>
-																	<i class="icon-star-full"></i>
-																	<i class="icon-star-full"></i>
-																	<i class="icon-star-full"></i>
-																	<i class="icon-star-empty"></i>
-																	<i class="icon-star-empty"></i>
-																	(70%)
-																</span>
-																<span>5 Reviews</span>
-															</p>
-															<p class="star">
-																<span>
-																	<i class="icon-star-full"></i>
-																	<i class="icon-star-full"></i>
-																	<i class="icon-star-empty"></i>
-																	<i class="icon-star-empty"></i>
-																	<i class="icon-star-empty"></i>
-																	(10%)
-																</span>
-																<span>0 Reviews</span>
-															</p>
-															<p class="star">
-																<span>
-																	<i class="icon-star-full"></i>
-																	<i class="icon-star-empty"></i>
-																	<i class="icon-star-empty"></i>
-																	<i class="icon-star-empty"></i>
-																	<i class="icon-star-empty"></i>
-																	(0%)
-																</span>
-																<span>0 Reviews</span>
-															</p>
+															<?php if (isset($_SESSION['username'])) : ?>
+																<form action="" method="post">
+																	<?= $_SESSION['username'] ?>: <br>
+																	<input type="text" name="content">
+																	<br>
+																	<br>
+																	<button class="btn-sm btn-primary" type="submit" name="btn">Bình luận</button>
+																</form>
+															<?php endif ?>
 														</div>
 													</div>
 												</div>
