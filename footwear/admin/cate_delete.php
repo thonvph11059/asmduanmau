@@ -1,4 +1,5 @@
 <?php
+require_once '../permission.php';
 require '../public/dbconnection.php';
 
 $id = $_GET['id'];

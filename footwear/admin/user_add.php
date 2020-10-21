@@ -1,4 +1,5 @@
 <?php
+require_once '../permission.php';
 require_once '../public/dbconnection.php';
 if (isset($_POST['btn'])) {
     extract($_REQUEST);

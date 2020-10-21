@@ -1,4 +1,5 @@
 <?php
+require_once '../permission.php';
 require_once '../public/dbconnection.php';
 $sql = "SELECT users.username, comment.id,comment.pro_id, comment.content, comment.date FROM comment INNER JOIN users on comment.user_id = users.user_id";
 $stmt = $conn->prepare($sql);
