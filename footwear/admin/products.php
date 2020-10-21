@@ -1,4 +1,5 @@
 <?php
+require_once '../permission.php';
 require_once '../public/dbconnection.php';
 $sql = "SELECT categories.cate_name, products.id, products.name, products.price, products.image, products.sort_desc, products.detail FROM products INNER JOIN categories ON products.cate_id = categories.cate_id";
 $stmt = $conn->prepare($sql);

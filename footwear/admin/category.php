@@ -1,4 +1,5 @@
 <?php
+require_once '../permission.php';
 require_once '../public/dbconnection.php';
 $sql = "select * from categories";
 $stmt = $conn->prepare($sql);
